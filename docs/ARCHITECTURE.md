@@ -36,7 +36,7 @@ flowchart TD
 | Native verification | native_verification.py, actual_verification.py, cadence_compatibility.py | Launch generation, export actual database, compare dimensions/counts/properties and track exact CAD version |
 | Symbols | orcad_library.py, symbol_reference_policy.py | Functional grouping, multipart layout and electrical-type handling |
 | Design comparison | connectivity_review.py, capture_reference_rules.py, capture_audit_entry.py | Optional schematic/board attribute and connectivity comparisons |
-| Public boundary | reference_defaults.py | Private board-derived policy deliberately replaced by a no-op adapter |
+| Public boundary | reference_defaults.py | Anonymized board-derived fallback policy; see BOARD_REFERENCE_RULES.md |
 | UI / exports | desktop.py, ui/, render.py, cli.py | Windows desktop bridge, CLI and review bundles |
 | External drawings | package_documents.py | Explicit two-file association; unique document-declared identifiers plus geometry/topology checks; no web downloader |
 

@@ -84,5 +84,5 @@
     "test_dimension_graph.py:test_real_footprint_arrow_roles_keep_width_and_length_distinct",
     "test_circular_dimensions.py:test_real_reference_land_roles_and_conflicting_label"
   ],
-  "policy": "No original Git history, documents, native CAD assets, logs, extracted evidence or private manufacturing policies. Documentation rewritten for publication."
+  "policy": "No original Git history, documents, native CAD assets, logs or extracted evidence. Device identifiers and anonymized board-derived rules published with owner authorization; documentation rewritten for publication."
 }

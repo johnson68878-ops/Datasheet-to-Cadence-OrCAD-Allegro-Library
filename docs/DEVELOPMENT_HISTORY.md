@@ -31,3 +31,6 @@ This is a curated technical history, not the original internal diary or Git hist
 7. Preserve missing evidence and failed approaches in reports; do not turn skipped private tests into public successes.
 
 The public repository begins with a new sanitized commit history. Subsequent fixes should document the trigger, structural rule, evidence, changed families, tests and unresolved cases.
+
+
+2026-10-29 follow-up: owner authorized publication of device identifiers and board-derived rules. Added a 42-document inventory, restored anonymized reference_defaults implementation and synthetic regression tests. This supersedes the initial no-op policy exclusion; original PDFs/native assets remain excluded.

@@ -29,7 +29,7 @@ The private evaluation corpus contains 42 wearable-electronics component PDFs. T
 | Additional native warning case | 1 PDF, excluded from PASS |
 | Last internal packaged executable check | One 8-pin example, Allegro 17.4, 70 checks, DRC 0 |
 
-These private outcomes are **not reproducible claims for this public snapshot**: documents, extracted answer fixtures, native reference libraries and board-derived defaults are intentionally absent. Native readback proves agreement with the model, not that the model interpreted the source correctly. 17.4 results do not establish 17.2 compatibility.
+These private outcomes are **not reproducible claims for this public snapshot**: documents, extracted answer fixtures, native reference libraries are intentionally absent; anonymized board-derived defaults are now included. Native readback proves agreement with the model, not that the model interpreted the source correctly. 17.4 results do not establish 17.2 compatibility.
 
 ## Quick start
 
@@ -44,7 +44,7 @@ python -m pytest -q
 ds2allegro inspect /path/to/your.pdf --output output/inspection
 ```
 
-The public synthetic suite was run locally: **89 passed, 0 skipped**. It does not require private PDFs or Cadence. This was tested using an existing dependency environment; a clean installation on all platforms has not been certified.
+The public synthetic suite was run locally: **93 passed, 0 skipped**. It does not require private PDFs or Cadence. This was tested using an existing dependency environment; a clean installation on all platforms has not been certified.
 
 For image PDFs, install Tesseract (and appropriate language packs) and Poppler on PATH. RapidOCR model/runtime dependencies are installed separately through package dependencies; their licenses remain their own. No OCR weights or third-party executables are redistributed here.
 
@@ -56,6 +56,11 @@ python -m datasheet_to_allegro.native_verification spec.json output/native /path
 ```
 
 The second command consumes a model, not a PDF. Inspect and trace its origin first. It creates real CAD artifacts and invokes your installed application. Review mode does not authorize production publication.
+
+## Evaluation documents and reference rules
+
+- [42-document device inventory and per-document status](docs/TEST_DATASHEETS.md)
+- [Anonymized board-derived rules and applicability](docs/BOARD_REFERENCE_RULES.md)
 
 ## Read first
 
