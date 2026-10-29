@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Community Footprint Intelligence Studio</title>
+  <link rel="stylesheet" href="styles.css?v=0.5.47-ui1">
+</head>
+<body class="startup-open">
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/project-mark.svg" alt="Community ICT 社区精密" class="company-logo company-logo-original">
+      <span class="brand-divider"></span>
+      <div class="product-name"><strong>Footprint Intelligence</strong><small>VERIFIABLE LIBRARY ENGINEERING</small></div>
+    </div>
+    <div class="topbar-actions"><button id="backToProductRouter" class="platform-back platform-back-compact" type="button"><span class="platform-back-label"><b>返回建库入口</b><small>CADENCE LIBRARY</small></span><span class="platform-back-key">HOME</span></button><button id="allegroSettingsButton" class="about-button allegro-settings" type="button">选择Allegro</button><button id="aboutButton" class="about-button" type="button">开发信息</button><div class="top-status" id="allegroStatus"><span class="live-dot"></span><span id="modeLabel">用户交付版</span> <b id="allegroVersionLabel">ALLEGRO 检测中</b></div></div>
+  </header>
+  <main>
+    <section class="mission-bar">
+      <div><p class="eyebrow">DATASHEET → VERIFIED ALLEGRO ASSET</p><h1>社区智能封装工程平台</h1></div>
+      <p>面向EE与Layout的可追溯Footprint流程。先验证证据和制造规则，再生成Allegro暂存文件。</p>
+      <div class="mission-stats"><span><b>双流程</b>PCB / Schematic</span><span><b id="missionAllegroVersion">检测中</b>Allegro</span><span><b>103</b>自动测试</span></div>
+    </section>
+    <section class="workspace">
+      <aside class="panel intake-panel">
+        <div class="panel-heading"><div><span>01 / INPUT</span><h2>导入Datasheet</h2></div><i>PDF</i></div>
+        <button class="drop-zone" id="buildButton" type="button" disabled><span class="upload-mark">＋</span><strong id="fileName">正在初始化本机引擎…</strong><small>PDF文本、表格、封装图与OCR证据</small></button>
+        <div class="build-progress" id="buildProgress" aria-live="polite">
+          <div class="progress-head"><b id="progressStage">正在启动</b><span id="progressPercent">0%</span></div>
+          <div class="progress-track"><i id="progressBar"></i></div>
+          <small id="progressDetail">正在连接Python解析器并检测Allegro。</small>
+        </div>
+        <div class="source-card engine-card"><span>PROCESS ENGINE</span><b id="engineState">PDF证据提取 · 几何校验</b><small id="engineDetail">后台执行耗时任务，界面持续显示处理阶段</small></div>
+        <div class="source-card"><span>RULE PROFILES</span><b>IPC · 公司规范 · 板厂能力</b><small>每条规则保留来源、版本与适用条件</small></div>
+        <div class="safe-note"><b>安全边界</b><p>证据不足仍生成隔离PoC并标注风险；正式Library发布始终受控。</p></div>
+      </aside>
+      <section class="panel preview-panel">
+        <div class="panel-heading preview-heading"><div><span id="previewKicker">CAPABILITY MAP</span><h2 id="previewTitle">可生成的PCB Footprint</h2></div><div class="preview-actions"><i id="previewBadge">等待输入</i><button id="previewBack" type="button" hidden>← 返回封装总览</button></div></div>
+        <div class="preview-stage" id="previewStage">
+          <div class="capability-grid" id="capabilityGrid">
+            <button class="cap-card" data-family="NO_LEAD"><span class="mini nolead"><i></i></span><b>QFN · DFN · SON</b><small>Exposed Pad / 分窗锡膏</small></button>
+            <button class="cap-card" data-family="GULLWING"><span class="mini gullwing"><i></i><i></i></span><b>SOIC · SOT · QFP</b><small>四边引脚 / Pin 1 / 丝印边界</small></button>
+            <button class="cap-card" data-family="ARRAY"><span class="mini array"><i></i></span><b>BGA · WLCSP · LGA</b><small>缺球阵列 / NSMD与SMD</small></button>
+            <button class="cap-card" data-family="PASSIVE"><span class="mini passive"><i></i><i></i></span><b>R · L · C</b><small>01005至大型功率器件</small></button>
+            <button class="cap-card" data-family="THROUGH_HOLE"><span class="mini tht"><i></i><i></i><i></i></span><b>THT · Connector</b><small>钻孔 / 槽孔 / 机械边界</small></button>
+            <button class="cap-card" data-family="CUSTOM"><span class="mini custom"><i></i></span><b>异形与专用封装</b><small>人工标注 + 参数化生成</small></button>
+          </div>
+        </div>
+        <div class="metrics" id="metrics"><div><small>状态</small><b>等待Datasheet</b></div><div><small>视图</small><b>Top / Component</b></div><div><small>单位</small><b>mm</b></div><div><small>输出</small><b>IL → DRA · PSM · PAD</b></div></div>
+      </section>
+      <aside class="panel review-panel">
+        <div class="panel-heading"><div><span>03 / REVIEW</span><h2>证据与审批</h2></div><i class="score" id="score">--</i></div>
+        <div class="review-track">
+          <div class="review-step active"><em>1</em><div><b>系统提取</b><small id="extractState">等待PDF与封装图</small></div></div>
+          <div class="review-step"><em>2</em><div><b>EE确认</b><small>料号、Pin 1、编号与EP</small></div></div>
+          <div class="review-step"><em>3</em><div><b>Layout确认</b><small>铜盘、阻焊、锡膏与Courtyard</small></div></div>
+          <div class="review-step"><em>4</em><div><b>Library发布</b><small>SKILL生成、Allegro验证与版本化</small></div></div>
+        </div>
+        <div class="evidence-list" id="evidenceList"><div><span>PDF EVIDENCE</span><b>未载入</b></div><div><span>REFERENCE MATCH</span><b>未执行</b></div><div><span>DFM PROFILE</span><b>待选择</b></div></div>
+      </aside>
+    </section>
+    <section class="result" id="resultBox"><div><span class="result-icon">i</span><div><strong id="resultTitle">等待分析</strong><p id="resultMessage">导入Datasheet后，封装能力墙将切换为该元件的二维Footprint和可追溯尺寸。</p></div></div><div class="result-actions"><button id="allegroButton" type="button" disabled>在Allegro中验证</button><button id="outputButton" type="button" disabled>打开工程输出</button></div></section>
+  </main>
+  <div class="product-gate" id="productGate" hidden>
+    <div class="product-gate-backdrop"></div>
+    <section class="product-router" aria-labelledby="productGateTitle">
+      <header class="router-header">
+        <div class="router-brand">
+          <img src="assets/project-mark.svg" alt="Community ICT 社区精密">
+          <span></span>
+          <div><b>LIBRARY INTELLIGENCE</b><small>CADENCE LIBRARY WORKFLOW ROUTER</small></div>
+        </div>
+        <div class="router-state"><i></i>LOCAL ENGINE · OFFLINE</div>
+      </header>
+      <div class="router-view" id="routerSelection">
+        <div class="router-intro">
+          <p>SELECT CADENCE LIBRARY WORKFLOW</p>
+          <h2 id="productGateTitle">同一份 Datasheet，选择目标 Cadence Library</h2>
+          <span>按建库对象进入独立且可审核的生成流程。PCB封装与OrCAD Capture原理图零件分别生成、分别回读验证。</span>
+        </div>
+        <div class="route-switch" aria-label="Cadence Library 建库类型">
+          <button class="route-card route-pcb" id="enterFootprint" type="button">
+            <span class="route-index">PCB</span>
+            <span class="route-status"><i></i>AVAILABLE</span>
+            <span class="route-graphic route-graphic-pcb" aria-hidden="true">
+              <span class="footprint-shelf">
+                <span class="footprint-sample"><span class="sample-symbol sample-qfn"><i></i></span><span class="sample-caption"><b>QFN-32</b><span>EXPOSED PAD</span></span></span>
+                <span class="footprint-sample"><span class="sample-symbol sample-wlcsp"><i></i></span><span class="sample-caption"><b>WLCSP-16</b><span>0.35 PITCH</span></span></span>
+                <span class="footprint-sample"><span class="sample-symbol sample-bga"><i></i></span><span class="sample-caption"><b>BGA-49</b><span>7 × 7 ARRAY</span></span></span>
+              </span>
+            </span>
+            <strong>PCB Footprint</strong>
+            <em>智能封装工程平台</em>
+            <small>读取PDF封装证据，生成并回读Allegro PAD / DRA / PSM。</small>
+            <span class="route-action"><span class="route-action-label"><b>进入 PCB Footprint</b><span>开始智能封装工程</span></span><span class="route-key">ENTER</span></span>
+          </button>
+          <div class="route-junction" aria-hidden="true"><span>DATASHEET</span><i></i><b></b></div>
+          <button class="route-card route-orcad" id="enterOrcad" type="button">
+            <span class="route-index">CIS</span>
+            <span class="route-status"><i></i>ALPHA</span>
+            <span class="route-graphic route-graphic-symbol" aria-hidden="true">
+              <span class="orcad-symbol-rail">
+                <span class="orcad-mini-unit"><b>A</b><span>CORE</span><i>RESET</i><i>GPIO</i></span>
+                <span class="orcad-mini-link">BUS</span>
+                <span class="orcad-mini-unit"><b>B</b><span>I/O</span><i>I²C</i><i>SPI</i></span>
+                <span class="orcad-mini-link">NET</span>
+                <span class="orcad-mini-unit power"><b>D</b><span>POWER</span><i>VDD</i><i>GND</i></span>
+              </span>
+              <span class="orcad-symbol-meta"><b>HETEROGENEOUS PARTS</b><span>PIN NAME · NUMBER · ELECTRICAL TYPE</span></span>
+            </span>
+            <strong>OrCAD Capture Symbol</strong>
+            <em>原理图符号库（OLB）</em>
+            <small>读取Pin表与功能架构；多封装先选Pin定义，只有大型复杂器件才按功能分件。</small>
+            <span class="route-action"><span class="route-action-label"><b>进入 OrCAD Capture 建库</b><span>生成原理图零件库 OLB</span></span><span class="route-key">ENTER</span></span>
+          </button>
+        </div>
+        <div class="router-note"><b>Library隔离</b><span>两条流程使用不同输出目录、审核规则与Cadence生成后端，不会混用Library。</span><code>PDF → EVIDENCE → LIBRARY</code></div>
+      </div>
+      <div class="router-view orcad-preview" id="orcadPreview" hidden>
+        <button class="router-back platform-back" id="backToRouter" type="button"><span class="platform-back-label"><b>返回建库流程</b><small>CADENCE LIBRARY ROUTER</small></span><span class="platform-back-key">BACK</span></button>
+        <div class="orcad-preview-grid">
+          <div class="orcad-copy">
+            <p>ORCAD CAPTURE · SCHEMATIC SYMBOL LIBRARY</p>
+            <span class="development-pill"><i></i>DATASHEET TO OLB · ALPHA</span>
+            <h2>从 Datasheet 或原理图 PDF<br>建立可审核的原理图零件</h2>
+            <p class="orcad-lead">Datasheet模式从Pin Table建库；原理图模式直接复原已有Symbol，可单选或将全部零件写入同一个OLB，两条流程互不依赖。</p>
+            <div class="orcad-controls">
+              <button id="orcadBuildButton" type="button">选择 Datasheet PDF 并生成 OLB</button>
+              <button id="orcadContextButton" type="button">选择原理图 PDF 并生成 OLB</button>
+              <button id="orcadOpenButton" type="button" disabled>用 OrCAD Capture 打开</button>
+              <button id="orcadOutputButton" type="button" disabled>打开工程输出</button>
+            </div>
+            <div class="orcad-build-state" id="orcadBuildStatus">请选择Datasheet模式或原理图模式；输出为隔离暂存OLB，不写入正式Library。</div>
+            <div class="orcad-roadmap">
+              <span><b>01</b>Datasheet Pin Table或原理图Symbol辨识</span>
+              <span><b>02</b>功能群组排序与左右均衡布局</span>
+              <span><b>03</b>OLB生成与Capture回读</span>
+              <span><b>04</b>EE审核后发布</span>
+            </div>
+          </div>
+          <div class="symbol-blueprint" aria-label="多部件OrCAD Symbol规划示意">
+            <div class="blueprint-head"><span>MULTI-PART SYMBOL</span><b>128 PIN · 4 PARTS</b></div>
+            <div class="symbol-parts">
+              <article><em>A</em><strong>CORE / GPIO</strong><small>PART A · 32 PINS</small><div class="pin-bank"><span class="symbol-pin left"><b>1</b><i>RESET_N</i></span><span class="symbol-pin left"><b>7</b><i>BOOT0</i></span><span class="symbol-pin right"><i>GPIO0</i><b>12</b></span><span class="symbol-pin right"><i>GPIO15</i><b>28</b></span></div><span class="type-chip">INPUT · BIDIR</span></article>
+              <article><em>B</em><strong>INTERFACE</strong><small>PART B · 32 PINS</small><div class="pin-bank"><span class="symbol-pin left"><b>41</b><i>SCL</i></span><span class="symbol-pin left"><b>42</b><i>SDA</i></span><span class="symbol-pin right"><i>SPI_CLK</i><b>53</b></span><span class="symbol-pin right"><i>SPI_MOSI</i><b>54</b></span></div><span class="type-chip">I²C · SPI · UART</span></article>
+              <article><em>C</em><strong>MEMORY / CLOCK</strong><small>PART C · 32 PINS</small><div class="pin-bank"><span class="symbol-pin left differential"><b>65</b><i>CLK_P</i></span><span class="symbol-pin left differential"><b>66</b><i>CLK_N</i></span><span class="symbol-pin right"><i>DQ0</i><b>73</b></span><span class="symbol-pin right"><i>DQ7</i><b>80</b></span></div><span class="type-chip">DIFF · MEMORY BUS</span></article>
+              <article class="power-part"><em>D</em><strong>POWER / GROUND</strong><small>PART D · 32 PINS</small><div class="pin-bank"><span class="symbol-pin left power"><b>97</b><i>VDD</i></span><span class="symbol-pin left power"><b>101</b><i>AVDD</i></span><span class="symbol-pin right ground"><i>VSS</i><b>112</b></span><span class="symbol-pin right ground"><i>GND</i><b>128</b></span></div><span class="type-chip">POWER · PASSIVE</span></article>
+            </div>
+            <div class="blueprint-foot"><span><i></i>PIN NAME</span><span><i></i>NUMBER</span><span><i></i>ELECTRICAL TYPE</span><span><i></i>PDF EVIDENCE</span></div>
+          </div>
+        </div>
+        <div class="preview-safety"><b>当前状态</b><span>通用Pin Table建库Alpha已开放：多封装强制选择实际Pin定义；典型应用与功能框图用于Pin群组、左右侧及顺序设计，生成后由Capture API逐Pin读回；无法可靠识别时会HOLD。</span></div>
+      </div>
+    </section>
+  </div>
+  <div class="startup-dialog" id="startupDialog">
+    <div class="startup-backdrop"></div>
+    <section class="startup-card" role="dialog" aria-modal="true" aria-labelledby="startupTitle">
+      <div class="startup-content">
+        <div class="startup-hero">
+          <div class="startup-title-block">
+            <p class="startup-kicker">CADENCE LIBRARY INTELLIGENCE · PROGRAM AUTHOR <strong id="startupAppVersion">软件版本 v0.5.52</strong></p>
+            <h2 id="startupTitle">社区智能建库工程平台</h2>
+            <p class="startup-subtitle">Community Cadence Library Intelligence Studio</p>
+          </div>
+          <img class="startup-company-logo" src="assets/project-mark.svg" alt="Community ICT 社区精密">
+        </div>
+        <p class="startup-purpose">将Datasheet证据转化为可回读、可比对、可审核的Allegro PCB Footprint与OrCAD Capture原理图零件库。</p>
+        <div class="developer-plate">
+          <div class="developer-index"><span>程序设计</span><b>JH</b><small>PROGRAM AUTHOR</small></div>
+          <div class="developer-details">
+            <p class="author-label">程序设计、开发与工程规则建立</p>
+            <h3>黄仲凯 <em>John Huang3</em></h3>
+            <p><strong class="developer-department">CPBG研发总处/先期产品开发处</strong></p>
+            <p>社区电子科技（昆山）有限公司</p>
+            <div class="developer-company-row">
+              <p>Community Electronic Technology (KunShan) Ltd.</p>
+            </div>
+            <dl>
+              <div><dt>电话</dt><dd>+86-15260238598</dd></div>
+              <div><dt>地址</dt><dd>江苏省昆山市锦溪镇百胜路399号</dd></div>
+              <div><dt>邮件</dt><dd><a href="mailto:John.Huang3@community-ict.com">John.Huang3@community-ict.com</a></dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <footer class="startup-actions"><p><span></span>PROGRAM AUTHOR · JOHN HUANG3　|　本机离线处理 · <b id="startupAllegroVersion">Allegro自动检测</b>实际回读</p><button id="enterPlatform" type="button">进入智能建库工程平台</button></footer>
+    </section>
+  </div>
+  <div class="engineering-dialog schematic-component-dialog" id="schematicComponentDialog" hidden>
+    <div class="dialog-backdrop"></div>
+    <section class="dialog-sheet component-sheet" role="dialog" aria-modal="true" aria-labelledby="componentDialogTitle" aria-describedby="componentDialogSummary">
+      <header class="dialog-header component-header">
+        <div class="component-symbol" aria-hidden="true"><span>U?</span><i></i><i></i><i></i><i></i></div>
+        <div><p>SCHEMATIC COMPONENT INVENTORY</p><h2 id="componentDialogTitle">选择要建立的原理图零件</h2></div>
+      </header>
+      <div class="dialog-body">
+        <div class="dialog-summary"><span>原理图辨识</span><p id="componentDialogSummary">正在读取RefDes、料号与实体Pin。</p></div>
+        <label class="component-search"><span>FILTER</span><input id="componentSearch" type="search" placeholder="输入 RefDes 或元件料号" autocomplete="off"></label>
+        <div class="component-grid" id="componentGrid"></div>
+        <p class="component-empty" id="componentEmpty" hidden>没有符合筛选条件的元件。</p>
+      </div>
+      <footer class="dialog-actions component-actions">
+        <p><b>选择依据：</b>仅接受Uxxx集成电路，并读取元件名称、可见Pin、外框比例、Pin坐标与A/B/C/D Part标记；Net和Power Port不会建成零件。</p>
+        <button id="componentCancel" type="button">取消载入原理图</button>
+      </footer>
+    </section>
+  </div>
+  <div class="engineering-dialog variant-dialog" id="variantDialog" hidden>
+    <div class="dialog-backdrop"></div>
+    <section class="dialog-sheet variant-sheet" role="dialog" aria-modal="true" aria-labelledby="variantTitle" aria-describedby="variantSummary">
+      <header class="dialog-header variant-header">
+        <div class="variant-symbol" aria-hidden="true">PKG</div>
+        <div><p>PACKAGE VARIANT SELECTION</p><h2 id="variantTitle">选择实际订购封装</h2></div>
+      </header>
+      <div class="dialog-body">
+        <div class="dialog-summary"><span>识别结果</span><p id="variantSummary">该Datasheet包含多个封装选项。选择后程序才会生成并调用Allegro。</p></div>
+        <div class="variant-grid" id="variantGrid"></div>
+      </div>
+      <footer class="dialog-actions variant-actions">
+        <p><b>提示：</b>请依据完整订购料号、BOM或原理图封装确认。</p>
+        <button id="variantCancel" type="button">取消并重新选择PDF</button>
+      </footer>
+    </section>
+  </div>
+  <div class="engineering-dialog" id="blockingDialog" hidden>
+    <div class="dialog-backdrop" data-dialog-close></div>
+    <section class="dialog-sheet" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogSummary">
+      <header class="dialog-header">
+        <div class="dialog-signal" aria-hidden="true"><i></i><span>HOLD</span></div>
+        <div><p>FOOTPRINT GENERATION INTERLOCK</p><h2 id="dialogTitle">封装生成已阻止</h2></div>
+        <button class="dialog-close" id="dialogClose" type="button" aria-label="关闭">×</button>
+      </header>
+      <div class="dialog-body">
+        <div class="dialog-summary"><span>工程结论</span><p id="dialogSummary">当前Datasheet证据不足，未调用Allegro。</p></div>
+        <div class="dialog-matrix-head"><span>阻断代码</span><span>检测结果与处理要求</span></div>
+        <div class="dialog-matrix" id="dialogMatrix"></div>
+      </div>
+      <footer class="dialog-actions">
+        <p id="dialogSafety"><b>安全状态：</b>没有生成或写入正式Library</p>
+        <div><button id="dialogOutput" type="button">打开证据输出</button><button class="primary" id="dialogAcknowledge" type="button">我已了解</button></div>
+      </footer>
+    </section>
+  </div>
+  <footer><span>COMMUNITY · FOOTPRINT INTELLIGENCE</span><span>INTERNAL ENGINEERING · STAGING LIBRARY ONLY</span></footer>
+  <script src="app.js?v=0.5.47-ui1"></script>
+</body>
+</html>

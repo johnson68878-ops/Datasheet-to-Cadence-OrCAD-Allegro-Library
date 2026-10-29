@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+output/
+private_data/
+*.pdf
+*.dra
+*.psm
+*.pad
+*.brd
+*.olb
+*.dsn
+*.exe
+*.zip
+.env*
